@@ -135,6 +135,8 @@ export const createAlbum = async (req, res) => {
 export const playTracks = async (req, res) => {
     try
     {
+        const protocol = req.protocol;
+        const address = req.get('host');
         const album = await Album.find({id: req.params.id});
         if (album.length < 1)
         {

@@ -76,6 +76,8 @@ export const findArtistAlbums = async (req, res) => {
 export const findArtistTracks = async (req, res) => {
     try
     {
+        const protocol = req.protocol;
+        const address = req.get('host');
         const tracks = await Track.find({artist: `${protocol}://${address}/artists/${req.params.id}`});
         if (tracks.length < 1)
         {
@@ -144,6 +146,8 @@ export const createArtist = async (req, res) => {
 export const playAlbums = async (req, res) => {
     try
     {
+        const protocol = req.protocol;
+        const address = req.get('host');
         const tracks = await Track.find({artist: `${protocol}://${address}/artists/${req.params.id}`});
         if (tracks.length < 1)
         {
@@ -175,6 +179,8 @@ export const playAlbums = async (req, res) => {
 export const deleteArtist = async (req, res) => {
     try
     {
+        const protocol = req.protocol;
+        const address = req.get('host');
         const artist = await Artist.find({id: req.params.id});
         if (artist.length < 1)
         {
@@ -184,10 +190,13 @@ export const deleteArtist = async (req, res) => {
         {
             // Elimino todos los track del artista
             await Track.deleteMany({artist: `${protocol}://${address}/artists/${req.params.id}`});
+            console.log(`${protocol}://${address}/artists/${req.params.id}`);
             // Elimino todos los albums del artista
             await Album.deleteMany({artist_id: req.params.id});
+            console.log("album");
             // Elimino al artista
             await Artist.deleteOne({id: req.params.id});
+            console.log(`${req.params.id}`);
             res.sendStatus(204);
         }
     } catch (error) {
