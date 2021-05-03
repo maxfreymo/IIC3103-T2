@@ -108,10 +108,10 @@ export const createArtist = async (req, res) => {
         {
             throw TypeError;
         }
-        let id_encode = Buffer.from(req.body.name, 'binary').toString('base64');
+        let id_encode = Buffer.from(req.body.name).toString('base64');
         if ( id_encode.length > 22)
         {
-            id_encode = id_encode.slice(22);
+            id_encode = id_encode.slice(0,22);
         }
         // Busco al artista por su id en la base de datos
         const artist = await Artist.find({id: id_encode});
@@ -190,13 +190,10 @@ export const deleteArtist = async (req, res) => {
         {
             // Elimino todos los track del artista
             await Track.deleteMany({artist: `${protocol}://${address}/artists/${req.params.id}`});
-            console.log(`${protocol}://${address}/artists/${req.params.id}`);
             // Elimino todos los albums del artista
             await Album.deleteMany({artist_id: req.params.id});
-            console.log("album");
             // Elimino al artista
             await Artist.deleteOne({id: req.params.id});
-            console.log(`${req.params.id}`);
             res.sendStatus(204);
         }
     } catch (error) {

@@ -92,7 +92,7 @@ export const createAlbum = async (req, res) => {
         let id_encode = Buffer.from(req.body.name, 'binary').toString('base64');
         if ( id_encode.length > 22)
         {
-            id_encode = id_encode.slice(22);
+            id_encode = id_encode.slice(0,22);
         }
         // Busco el album por su id en la base de datos
         const album = await Album.find({id: id_encode});
