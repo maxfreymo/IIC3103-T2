@@ -36,7 +36,7 @@ export const findOneTrack = async (req, res) => {
         } 
         else
         {
-            res.json(track);
+            res.json(track[0]);
         }
     } catch (error) {
         if (error == "Unknown")
@@ -77,7 +77,7 @@ export const createTrack = async (req, res) => {
         if (track.length > 0)
         {
             res.status(409);
-            res.send(track);
+            res.send(track[0]);
         }
         else
         {
@@ -95,7 +95,8 @@ export const createTrack = async (req, res) => {
                 self: `${protocol}://${address}/tracks/${id_encode}`
             });
             await newTrack.save();
-            res.sendStatus(201);
+            res.status(201);
+            res.send(newTrack);
         }
     } catch (error) {
         if (error == "Unknown")

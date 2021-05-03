@@ -37,7 +37,7 @@ export const findOneArtist = async (req, res) => {
         } 
         else
         {
-            res.json(artist);
+            res.json(artist[0]);
         }
     } catch (error) {
         if (error == "Unknown")
@@ -117,7 +117,7 @@ export const createArtist = async (req, res) => {
         if ( artist.length > 0)
         {
             res.status(409);
-            res.send(artist);
+            res.send(artist[0]);
         }
         else
         {
@@ -132,7 +132,8 @@ export const createArtist = async (req, res) => {
                 self: `${protocol}://${address}/artists/${id_encode}`
             });
             await newArtist.save();
-            res.sendStatus(201);
+            res.status(201);
+            res.send(newArtist);
         }
     } catch (error) {
         res.sendStatus(400);}

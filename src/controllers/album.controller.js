@@ -37,7 +37,7 @@ export const findOneAlbum = async (req, res) => {
         } 
         else
         {
-            res.json(album);
+            res.json(album[0]);
         }
     } catch (error) {
         if (error == "Unknown")
@@ -100,7 +100,7 @@ export const createAlbum = async (req, res) => {
         if ( album.length > 0)
         {
             res.status(409);
-            res.send(album);
+            res.send(album[0]);
         }
         else
         {
@@ -116,7 +116,8 @@ export const createAlbum = async (req, res) => {
                 self: `${protocol}://${address}/${id_encode}`
             });
             await newAlbum.save();
-            res.sendStatus(201);
+            res.status(201);
+            res.send(newAlbum);
         }
     } catch (error) {
         if (error == "Unknown")
