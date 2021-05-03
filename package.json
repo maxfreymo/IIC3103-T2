@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "desarrollo": "cross-env MONGODB_URI=mongodb://Localhost/spoti_db nodemon src/index.js --exec babel-node",
+    "desarrollo": "nodemon src/index.js --exec babel-node",
     "start": "node src/index.js"
   },
   "keywords": [],

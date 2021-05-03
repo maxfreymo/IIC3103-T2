@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import config from './config';
 
 (async () => {
-    const db = await mongoose.connect('mongodb+srv://mbfrey-user:<mbfrey123>@cluster0.ioebc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+    const db = await mongoose.connect('mongodb+srv://mbfrey-user:12345@cluster0.ioebc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });

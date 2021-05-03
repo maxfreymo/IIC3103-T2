@@ -1,9 +1,7 @@
 
 // Carga las variables de entorno desde .env
 import { config } from 'dotenv';
-config({path: '.env'});
-
-console.log(process.env.MONGODB_URI);
+config({path: '../variables.env'});
 
 export default {
     mongodbURL: process.env.MONGODB_URI,
