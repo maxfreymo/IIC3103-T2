@@ -76,7 +76,7 @@ export const findArtistAlbums = async (req, res) => {
 export const findArtistTracks = async (req, res) => {
     try
     {
-        const tracks = await Track.find({artist: `http://localhost:3000/artists/${req.params.id}`});
+        const tracks = await Track.find({artist: `${protocol}://${address}/artists/${req.params.id}`});
         if (tracks.length < 1)
         {
             throw "Unknown";
@@ -144,7 +144,7 @@ export const createArtist = async (req, res) => {
 export const playAlbums = async (req, res) => {
     try
     {
-        const tracks = await Track.find({artist: `http://localhost:3000/artists/${req.params.id}`});
+        const tracks = await Track.find({artist: `${protocol}://${address}/artists/${req.params.id}`});
         if (tracks.length < 1)
         {
             throw "Unknown";
@@ -183,7 +183,7 @@ export const deleteArtist = async (req, res) => {
         else
         {
             // Elimino todos los track del artista
-            await Track.deleteMany({artist: `http://localhost:3000/artists/${req.params.id}`});
+            await Track.deleteMany({artist: `${protocol}://${address}/artists/${req.params.id}`});
             // Elimino todos los albums del artista
             await Album.deleteMany({artist_id: req.params.id});
             // Elimino al artista

@@ -142,7 +142,7 @@ export const playTracks = async (req, res) => {
         }
         else
         {
-            const tracks = await Track.find({album: `http://localhost:3000/albums/${req.params.id}`});
+            const tracks = await Track.find({album: `${protocol}://${address}/albums/${req.params.id}`});
             for (let step = 0; tracks[step] != null ; step++) {
                 await Track.updateOne(
                     {id: tracks[step].id},
