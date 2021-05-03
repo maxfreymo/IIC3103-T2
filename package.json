@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "desarrollo": "nodemon src/index.js --exec babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon src/index.js --exec babel-node",
+    "heroku-postbuild": "npm install",
     "start": "babel-node src/index.js"
   },
   "keywords": [],
