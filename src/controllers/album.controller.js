@@ -89,7 +89,7 @@ export const createAlbum = async (req, res) => {
         {
             throw "Unknown";
         }
-        let id_encode = Buffer.from(req.body.name, 'binary').toString('base64');
+        let id_encode = Buffer.from(`${req.body.name}:${req.params.id}`).toString('base64');
         if ( id_encode.length > 22)
         {
             id_encode = id_encode.slice(0,22);
